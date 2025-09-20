@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="./assets/logo.png.png" alt="Dashboard Logo" width="160">
+    </div>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="courses.html">Courses</a>
+      <a href="profile.html">Profile</a>
+      <a href="login.html" onclick="logout()">Sign out</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard">
+
+    <!-- Welcome + Profile -->
+    <div class="profile-header">
+      <div class="welcome-text">
+        <h1 id="welcomeMessage">Welcome, Student!!!</h1>
+        <p id="todayDate"></p>
+      </div>
+    </div>
+
+    <!-- Stats Section (Horizontal Row) -->
+    <div class="stats-row">
+      <div class="card">
+        <h3>📚 Courses</h3>
+        <p id="courseCount" src="courses.html">0</p>
+      </div>
+      <div class="card">
+        <h3>🎥 Live Classes</h3>
+        <p id="liveCount">0</p>
+      </div>
+      <div class="card">
+        <h3>✅ Completed</h3>
+        <p id="completedCount">0</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('today')">Today’s Session</button>
+      <button class="tab" onclick="showTab('self')">My Self-Paced Courses</button>
+      <button class="tab" onclick="showTab('live')">My Live Classes</button>
+      <button class="tab" onclick="showTab('schedule')">Upcoming Schedule</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="today">
+      <p>No schedule today.</p>
+    </div>
+    <div class="tab-content hidden" id="self">
+      <p>List of self-paced courses...</p>
+    </div>
+    <div class="tab-content hidden" id="live">
+      <p>Live class information...</p>
+    </div>
+    <div class="tab-content hidden" id="schedule">
+      <p>Upcoming schedule...</p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+ 
+  <script>
+    // Load student name (from localStorage or fallback)
+    const studentName = localStorage.getItem("studentName") || "Student";
+
+    // Set welcome + profile name
+    document.getElementById("welcomeMessage").innerText = `👋 Welcome, ${studentName}!`;
+
+    // Show today’s date
+    function updateDate() {
+      const today = new Date();
+      const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+      document.getElementById("todayDate").innerText = today.toLocaleDateString("en-US", options);
+    }
+    updateDate();
+ </script>
+  <!-- Axios via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- Main app script as module -->
+  <script type="module" src="./app.js"></script>
+
+</body>
+</html>

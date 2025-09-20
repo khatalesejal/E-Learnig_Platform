@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Courses - E-Learning Platform</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="./assets/logo.png.png" alt="logo" width="200">
+    </div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="courses.html" class="active">Courses</a>
+      <a href="profile.html">Profile</a>
+      <a href="login.html" onclick="signout()">Sign out</a>
+    </nav>
+  </header>
+
+  <!-- Courses Section -->
+  <main class="container">
+    <h1 class="page-title">📚 Our Courses</h1>
+    <div id="courses-container" class="grid"></div>
+  </main>
+
+  <!-- JS -->
+  <script>
+    // ✅ Load courses from backend API
+    async function loadCourses() {
+      try {
+        const response = await fetch("http://localhost:5000/api/courses");
+        if (!response.ok) throw new Error("Failed to fetch courses");
+
+        const courses = await response.json();
+        const container = document.getElementById("courses-container");
+        container.innerHTML = "";
+
+        if (!courses || courses.length === 0) {
+          container.innerHTML = "<p>No courses available.</p>";
+          return;
+        }
+
+        courses.forEach(course => {
+          const card = document.createElement("div");
+          card.classList.add("course-card");
+          card.innerHTML = `
+            <img src="./assets/icons.png.jpeg" alt="Course Icon" class="course-img" />
+            <h3>${course.title}</h3>
+            <p>${course.description}</p>
+            <p><strong>Price:</strong> $${course.price}</p>
+            <button class="enroll-btn" onclick="enrollCourse(${course.id})">Enroll</button>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.error("Error loading courses:", err);
+        document.getElementById("courses-container").innerHTML = "<p>Error loading courses.</p>";
+      }
+    }
+
+    // ✅ Enroll in a course
+    async function enrollCourse(courseId) {
+      const token = localStorage.getItem("token"); // token from login
+
+      if (!token) {
+        alert("⚠️ Please sign in first!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:5000/api/enroll/enroll-course", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` // 🔑 send token
+          },
+          body: JSON.stringify({ courseId })  
+        });
+
+        if (response.status === 401) {
+          alert("⚠️ Unauthorized! Please log in again.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error("Failed to enroll");
+        }
+
+        const data = await response.json();
+        alert(data.message || "✅ Enrolled successfully!");
+      } catch (err) {
+        console.error("Error enrolling course:", err);
+        alert("❌ Error enrolling course. Try again later.");
+      }
+    }
+
+    // ✅ Logout (clear token)
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    }
+
+    // Load courses when page loads
+    window.addEventListener("DOMContentLoaded", loadCourses);
+  </script>
+</body>
+</html>
