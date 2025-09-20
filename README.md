@@ -29,6 +29,7 @@ Backend:
 - MYSQL   
 - JWT Authentication  
 ---
+
 🎯 Project Objectives
 To create a real-world learning management system (LMS)
 To provide a platform where students can sign up, log in, view courses, and enroll
