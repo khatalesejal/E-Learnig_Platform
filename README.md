@@ -9,7 +9,7 @@ Courses Page.
 ![Image Alt](https://github.com/khatalesejal/E-Learning_Platform/blob/81a9639670f55d974d8e47d11f3f2a5827a05b69/Coursespage.png)
 
 Profile Page.
-![Image Alt]()
+![Image Alt](https://github.com/khatalesejal/E-Learning_Platform/blob/12ec4ee20ce4a632bafdbd8651f49a8742da53c4/Profilepage.png)
 
 ## 🚀 Features
 - 🔐 **Authentication** (Register, Login, JWT-based Authorization)
