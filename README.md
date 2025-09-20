@@ -6,7 +6,7 @@ Dashboard Page.
 ![Image Alt](https://github.com/khatalesejal/E-Learning_Platform/blob/cf8c6a5d8f1420c23014ff0eb4512590df424081/Dashboardpage.png)
 
 Courses Page.
-![Image Alt]()
+![Image Alt](https://github.com/khatalesejal/E-Learning_Platform/blob/81a9639670f55d974d8e47d11f3f2a5827a05b69/Coursespage.png)
 
 Profile Page.
 ![Image Alt]()
