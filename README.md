@@ -2,6 +2,15 @@
 A full-stack E-Learning web application where students can register, log in, browse courses, and enroll in them.  This project is built with HTML, CSS, JavaScript (Frontend) and Node.js + Express + MYSQL (Backend).
 It combines a user-friendly frontend with a secure and scalable backend, making it suitable for small to medium-sized learning systems.
 
+Dashboard Page.
+![Image Alt](https://github.com/khatalesejal/E-Learning_Platform/blob/cf8c6a5d8f1420c23014ff0eb4512590df424081/Dashboardpage.png)
+
+Courses Page.
+![Image Alt]()
+
+Profile Page.
+![Image Alt]()
+
 ## 🚀 Features
 - 🔐 **Authentication** (Register, Login, JWT-based Authorization)
 - 👤 **Student Profile** (View user details & enrolled courses)
